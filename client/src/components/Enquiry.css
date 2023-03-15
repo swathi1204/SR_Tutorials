@@ -1,0 +1,14 @@
+.enquiry_base{
+    background-color: white;
+    background-size: cover;
+    border-radius: 25px;
+
+    /* height: 500px; */
+    width: 80%;
+    position: absolute;
+    top:70px;
+    left: 50%;
+    transform: translate(-50%,0%);
+
+
+}

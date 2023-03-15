@@ -2,7 +2,7 @@ import React ,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const contact = () => {
+const Contact = () => {
     const navigate= useNavigate();
 
   const[contact,setContact]= useState({
@@ -159,4 +159,4 @@ console.log(e)
   );
 }
 
-export default contact;
+export default Contact;

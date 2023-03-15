@@ -3,6 +3,7 @@ const dotenv= require('dotenv');
 const mongoose= require('mongoose');
 const app = express();
 
+// const cors = require('cors')
 // const DB= 'mongodb+srv://swathipardeshi:swathi01@cluster0.y5stpf9.mongodb.net/mernstack?retryWrites=true&w=majority'
 dotenv.config({path:'./config.env'});
 
@@ -27,9 +28,19 @@ const PORT= process.env.PORT;
 // }).catch((err)=> console.log('no connection'));
 //middleware
 
-var cors = require('cors')
+// var cors = require('cors')
 
-app.use(cors())
+// app.use(cors())
+
+const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            
+    // Access-Control-Allow-Credentials: true,
+    optionSuccessStatus:200 
+
+}
+app.use(cors(corsOptions));
 
 const middleware= (req,res,next)=>{
     console.log('hello my middleware');
@@ -37,28 +48,17 @@ const middleware= (req,res,next)=>{
 }
 
 // middleware();
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+    next();
+     });
 
-// app.get('/',(req, res)=> {
-//          res.send('hello world from server');
-// });
 
-// app.get('/about',middleware,(req, res)=> {
-//     console.log('hello my about');
-//     res.send('hello about world');
-// });
 
-app.get('/contact',(req, res)=> {
-    res.cookie("jwtoken","swathi");
-    res.send(`hello contact world`);
-});
-
-// app.get('/signin',(req, res)=> {
-//     res.send('hello login world');
-// });
-
-// app.get('/signup',(req, res)=> {
-//     res.send('hello register world');
-// });
 console.log('subscribe');
 app.listen(5000, ()=> {
     console.log(`server is running ${PORT}`); 

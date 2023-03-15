@@ -22,9 +22,24 @@ router.get('/',(req, res)=> {
 // res.send('hello about world');
 // });
 
-router.get('/contact',(req, res)=> {
-    res.cookie("jwtoken","swathi");
-res.send('hello contact world');
+router.get('/contact',async(req, res)=> {
+
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+    // res.cookie("jwtoken","swathi");
+   
+    try{
+        const contacts= await contact.find();
+        // console.log(contacts);
+        res.send({contacts});
+    }
+    catch(err){
+        console.log(err);
+    }
+
 });
 
 router.get('/signin',(req, res)=> {
