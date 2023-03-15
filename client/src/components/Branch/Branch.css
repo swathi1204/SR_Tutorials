@@ -1,0 +1,101 @@
+.btna{
+    width: 20%;
+    height: 2em;
+    background-color: white;
+    text-align: center;
+    padding: 0.5em;
+    display: flex;
+    justify-content: space-around;
+    transition: 1s;
+    border-radius: 0.5em;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: 15cm;
+    margin-bottom: 0.9cm;
+    margin-top: 1.5cm;
+    color: rgb(0, 0, 0);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.08em 0.5em  rgb(77, 193, 202);
+    display: flex;
+    text-decoration: none;
+}
+.btna:hover:hover{transform: scale(1.25);}
+
+.btnb{
+    width: 20%;
+    height: 1.5cm;
+    background-color: white;
+    text-align: center;
+    /* padding: 0.5em; */
+    display: flex;
+    justify-content: space-around;
+    transition: 1s;
+    border-radius: 0.5em;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 0.9cm;
+    margin-top: 0.3cm;
+    color: rgb(0, 0, 0);
+    margin-left: 15cm;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.08em 0.5em rgb(77, 193, 202);
+    display: flex;
+}
+.btnb:hover{transform: scale(1.25);}
+
+.popupbutton
+{
+    width: 25%;
+    height: 2em;
+    background-color: rgb(14, 53, 77);
+    text-align: center;
+    /* padding: 0.5em; */
+    display: flex;
+    justify-content: space-around;
+    transition: 1s;
+    border-radius: 0.5em;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 1cm;
+    /* margin-top: 2cm; */
+    color: wheat;
+    margin-left: 15cm;
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-box {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 2rem;
+    width: 5cm;
+    align-items: center;
+    /* margin-left: 2cm;     */
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  p1{
+    margin-left: 1cm;
+  }
+  p2{
+    margin-left: 0.8cm;
+  }
