@@ -10,7 +10,7 @@ const BranchAdmin= require("../models/userSchemaBranchAdmin");
 
 const contact= require("../models/userSchema2");
 
-const tutor= require("../models/userSchema3");
+const tutor= require("../models/userSchemaTutor");
 
 const student = require("../models/userSchemastudent");
 
@@ -323,6 +323,84 @@ router.post('/studentregister',async (req,res)=>{
         }
     });
 
+
+    //student login
+
+    router.post('/signin_student', async(req, res)=> {
+        try{
+            let token;
+
+            const {email,password}= req.body;
+
+            if(!email || !password)
+            {
+                return res.status(400).json({error:"please fill the data"});
+            }
+
+            const StudentLogin = await student.findOne({email:email});
+            
+            if(StudentLogin ){
+            const isMatch = await bcrypt.compare(password, StudentLogin.password);
+            token = await StudentLogin.generateAuthToken();
+            console.log(token);
+
+            res.cookie("jwtoken", token, {
+                expires:new Date(Date.now() + 25892000000),
+                httpOnly: true
+            });
+
+            if( !isMatch){
+                res.status(400).json({error:"invalid credentials"});
+            }else {
+                res.json({message:"user sign in successfully"});
+            }
+        }
+        else{
+            res.status(400).json({error:"invalid credentials"});
+        } 
+        }catch(err){
+               console.log(err);
+        }
+    });
+
+    //tutor login
+
+    router.post('/signin_tutor', async(req, res)=> {
+        try{
+            let token;
+
+            const {email,password}= req.body;
+
+            if(!email || !password)
+            {
+                return res.status(400).json({error:"please fill the data"});
+            }
+
+            const TutorLogin = await tutor.findOne({email:email});
+            
+            if(TutorLogin ){
+            const isMatch = await bcrypt.compare(password, TutorLogin.password);
+            token = await TutorLogin.generateAuthToken();
+            console.log(token);
+
+            res.cookie("jwtoken", token, {
+                expires:new Date(Date.now() + 25892000000),
+                httpOnly: true
+            });
+
+            if( !isMatch){
+                res.status(400).json({error:"invalid credentials"});
+            }else {
+                res.json({message:"user sign in successfully"});
+            }
+        }
+        else{
+            res.status(400).json({error:"invalid credentials"});
+        } 
+        }catch(err){
+               console.log(err);
+        }
+    });
 
     //logout
     router.get('/logout', (req,res) => {

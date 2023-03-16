@@ -54,8 +54,11 @@ const Navbar = () => {
         
     <div class="dropdown-content">
         
-    <Link style={{textDecoration: 'none'}} to="/PTutor">
-          <div className="btnabc">Parent/Tutor </div>
+    <Link style={{textDecoration: 'none'}} to="/Parent">
+          <div className="btnabc">Parent </div>
+          </Link>
+    <Link style={{textDecoration: 'none'}} to="/Tutor">
+          <div className="btnabc">Tutor </div>
           </Link>
     <Link style={{textDecoration: 'none'}} to="/superadmin">
           <div className="btnabc">Super Admin</div>

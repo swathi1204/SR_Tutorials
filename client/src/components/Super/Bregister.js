@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import { NavLink , useNavigate} from 'react-router-dom'
 
 
-const BSignup = () => {
+const Bregister = () => {
   const navigate= useNavigate();
 
   const[branchAdmin,setUser]= useState({
@@ -135,4 +135,4 @@ const PostData = async (e) => {
   )
 }
 
-export default BSignup
+export default Bregister

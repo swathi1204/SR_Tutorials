@@ -8,16 +8,18 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Errorpage from './components/Errorpage';
-import Ptutor from './components/Parent';
+// import Ptutor from './components/Parent';
 import Superadmin from './components/Super/SuperAdmin';
-import BranchAdmin from './components/Branch/BranchAdmin';
+// import BranchAdmin from './components/Branch/BranchAdmin';
 import SuperAdmin2 from './components/Super/SuperAdmin2';
 import BranchAdmin2 from './components/Branch/BranchAdmin2';
 import Logout from "./components/Logout";
 import Tregister from './components/Branch/Tregister';
 import Enquiry from './components/Enquiry';
-// import BSignup from './components/Bregister';
+// import Bregister from './components/Super/Bregister';
 import BLogin from './components/Super/BLogin';
+import SLogin from './components/Branch/SLogin';
+import TLogin from './components/Branch/TLogin';
 
 import Sregister from './components/Branch/Sregister';
 
@@ -35,7 +37,8 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/logout" element={<Logout/>} />
         <Route path="/superadmin/SuperAdmin2/register" element={<Signup/>} />
-        <Route path="/ptutor" element={<Ptutor/>} />
+        <Route path="/Parent" element={<SLogin/>} />
+        <Route path="/Tutor" element={<TLogin/>} />
         <Route path="/superadmin" element={<Superadmin/>} />
         <Route path="/branchadmin" element={<BLogin/>} />
         <Route path="/superadmin/superadmin2" element={<SuperAdmin2/>} />
