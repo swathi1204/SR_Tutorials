@@ -16,6 +16,8 @@ import BranchAdmin2 from './components/Branch/BranchAdmin2';
 import Logout from "./components/Logout";
 import Tregister from './components/Branch/Tregister';
 import Enquiry from './components/Enquiry';
+// import BSignup from './components/Bregister';
+import BLogin from './components/Super/BLogin';
 
 import Sregister from './components/Branch/Sregister';
 
@@ -35,7 +37,7 @@ function App() {
         <Route path="/superadmin/SuperAdmin2/register" element={<Signup/>} />
         <Route path="/ptutor" element={<Ptutor/>} />
         <Route path="/superadmin" element={<Superadmin/>} />
-        <Route path="/branchadmin" element={<BranchAdmin/>} />
+        <Route path="/branchadmin" element={<BLogin/>} />
         <Route path="/superadmin/superadmin2" element={<SuperAdmin2/>} />
         <Route path="/branchadmin/branchadmin2" element={<BranchAdmin2/>} />
         <Route path="/branchadmin/Branchadmin2/Enq" element={<Enquiry/>} />

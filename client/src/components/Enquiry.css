@@ -1,14 +1,50 @@
+
 .enquiry_base{
     background-color: white;
     background-size: cover;
     border-radius: 25px;
-
-    /* height: 500px; */
+    height:fit-content;
     width: 80%;
     position: absolute;
     top:70px;
     left: 50%;
     transform: translate(-50%,0%);
+  
+   
+}
+.enq_content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-auto-flow: dense;
+    grid-row-gap: 0;
+    
+  }
+  .record:nth-child(7)
+  {
+   margin-bottom: -5cm;
+  }
+.record{
+    
+    background-color: lightblue;
+    height: fit-content;
+    width: 10cm;
+   margin-left: 1cm;
+    margin-top: 1cm;
+    /* break-inside: avoid-column; */
+}
 
+.record > .a:nth-child(2) {
+    margin-top: 20px;
+  }
 
+.a{
+    margin-left: 0.5cm;
+    
+    
+   
+}
+h1{
+    margin-left: 14cm;
+    margin-top: 0.3cm;
 }

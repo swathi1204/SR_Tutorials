@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 require("../db/conn");
 const User= require("../models/userSchema");
 
+const BranchAdmin= require("../models/userSchemaBranchAdmin");
 
 const contact= require("../models/userSchema2");
 
@@ -22,14 +23,15 @@ router.get('/',(req, res)=> {
 // res.send('hello about world');
 // });
 
+//get data from contact, enquiry
+
 router.get('/contact',async(req, res)=> {
 
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Max-Age", "1800");
     res.setHeader("Access-Control-Allow-Headers", "content-type");
-    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
-    // res.cookie("jwtoken","swathi");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
    
     try{
         const contacts= await contact.find();
@@ -77,8 +79,48 @@ router.post('/contact', async(req,res)=>{
 
 });
 
-//register
-router.post('/register',async (req,res)=>{
+// //register
+// router.post('/register',async (req,res)=>{
+
+//     const {name, email,  phone, dateofbirth, password, cpassword}=req.body;
+    
+//     if(!name || !email || !phone || !dateofbirth || !password || !cpassword ){
+//           return res.status(422).json({error:"please fill the field properly"});
+//     }
+
+//     try{
+//         const userExist = await User.findOne({email:email})
+        
+//         if(userExist){
+//             return res.status(422).json({error: "email already exist"});
+//         }else if(password != cpassword){
+//             return res.status(422).json({error: "password not matching"});
+//         }
+//         else{
+
+//         const user = new User ({name, email,  phone, dateofbirth, password, cpassword});
+        
+        
+//         const userRegister = await user.save();
+
+//         if(userRegister){
+//             res.status(201).json({message: "user registered successfully"});
+
+//         }
+//         else
+//         {
+//             res.status(500).json({error:"failed to register"});
+//         }
+//     }
+
+//     } catch(err){
+//         console.log(err);
+//     }
+    
+//     });
+
+//Branchregister
+router.post('/superadmin/SuperAdmin2/register',async (req,res)=>{
 
     const {name, email,  phone, dateofbirth, password, cpassword}=req.body;
     
@@ -87,7 +129,7 @@ router.post('/register',async (req,res)=>{
     }
 
     try{
-        const userExist = await User.findOne({email:email})
+        const userExist = await BranchAdmin.findOne({email:email})
         
         if(userExist){
             return res.status(422).json({error: "email already exist"});
@@ -96,12 +138,12 @@ router.post('/register',async (req,res)=>{
         }
         else{
 
-        const user = new User ({name, email,  phone, dateofbirth, password, cpassword});
+        const branchAdmin = new BranchAdmin ({name, email,  phone, dateofbirth, password, cpassword});
         
         
-        const userRegister = await user.save();
+        const BranchRegister = await branchAdmin.save();
 
-        if(userRegister){
+        if(BranchRegister){
             res.status(201).json({message: "user registered successfully"});
 
         }
@@ -116,6 +158,7 @@ router.post('/register',async (req,res)=>{
     }
     
     });
+
 
     // || !addressProof
 
@@ -220,6 +263,45 @@ router.post('/studentregister',async (req,res)=>{
             if(userLogin ){
             const isMatch = await bcrypt.compare(password, userLogin.password);
             token = await userLogin.generateAuthToken();
+            console.log(token);
+
+            res.cookie("jwtoken", token, {
+                expires:new Date(Date.now() + 25892000000),
+                httpOnly: true
+            });
+
+            if( !isMatch){
+                res.status(400).json({error:"invalid credentials"});
+            }else {
+                res.json({message:"user sign in successfully"});
+            }
+        }
+        else{
+            res.status(400).json({error:"invalid credentials"});
+        } 
+        }catch(err){
+               console.log(err);
+        }
+    });
+
+    //branch login
+
+    router.post('/signin_branch', async(req, res)=> {
+        try{
+            let token;
+
+            const {email,password}= req.body;
+
+            if(!email || !password)
+            {
+                return res.status(400).json({error:"please fill the data"});
+            }
+
+            const BranchLogin = await BranchAdmin.findOne({email:email});
+            
+            if(BranchLogin ){
+            const isMatch = await bcrypt.compare(password, BranchLogin.password);
+            token = await BranchLogin.generateAuthToken();
             console.log(token);
 
             res.cookie("jwtoken", token, {
