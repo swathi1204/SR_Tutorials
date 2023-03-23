@@ -339,7 +339,7 @@ figure {
 .form-group {
   position: relative;
   margin-bottom: 25px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .form-group:last-child {
@@ -1195,3 +1195,17 @@ label.valid:after {
 {
   margin-left: 5cm;
 } */
+.email
+{
+  text-align: right;
+}
+
+
+i{
+  margin-left: -0.2cm;
+  font-size: 1.5rem;
+}
+input::placeholder
+{
+  margin-left: 2cm;
+}

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
+const multer = require('multer');
+const upload = multer();
 const userSchemastudent= new mongoose.Schema({
     name: {
         type:String,
@@ -36,16 +37,21 @@ const userSchemastudent= new mongoose.Schema({
         type:String,
         required : true
     },
+    primelocation : {
+        type: String,
+        required : true
+    },
     
     subjects: {
         type: String,
         required : true
     }
-    // },
-    // addressProof: {
-    //     type:File,
-    //     required : true
-    // }
+    ,
+    file: {
+        data:Buffer,
+        type : String,
+        required : true
+    }
 })
 
 // hashing the password

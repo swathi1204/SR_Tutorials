@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 
 require("../db/conn");
 const User= require("../models/userSchema");
+const userSchemastudent = require("../models/userSchemastudent");
+
+const userSchemaTutor = require("../models/userSchemaTutor");
 
 const BranchAdmin= require("../models/userSchemaBranchAdmin");
 
@@ -14,9 +17,9 @@ const tutor= require("../models/userSchemaTutor");
 
 const student = require("../models/userSchemastudent");
 
-router.get('/',(req, res)=> {
-    res.send('hello world from server');
-});
+// router.get('/',(req, res)=> {
+//     res.send('hello world from server');
+// });
 
 // router.get('/about',middleware,(req, res)=> {
 // console.log('hello my about');
@@ -52,6 +55,62 @@ router.get('/signup',(req, res)=> {
 res.send('hello register world');
 });
 
+//find tutor
+
+router.get("/tutorregister", async (req, res) => {
+
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+   
+    const qPrimelocation = req.query.primelocation;
+    try {
+        let tutors;
+        if (qPrimelocation) {
+        tutors = await userSchemaTutor.find({
+          primelocation: {
+            $in: [qPrimelocation],
+          },
+        })
+        res.send({tutors});
+      }
+    }
+      catch (err) {
+        res.status(500).json(err);
+      }
+    })
+
+
+    //find student
+
+router.get("/studentregister", async (req, res) => {
+
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+   
+    const qPrimelocation2 = req.query.primelocation;
+    try {
+        let students;
+        if (qPrimelocation2) {
+        students = await userSchemastudent.find({
+          primelocation: {
+            $in: [qPrimelocation2],
+          },
+        })
+        res.send({students});
+      }
+    }
+      catch (err) {
+        res.status(500).json(err);
+      }
+    })
+ 
+
 //contact
 router.post('/contact', async(req,res)=>{
     const{name, email, phone, message}= req.body;
@@ -79,45 +138,7 @@ router.post('/contact', async(req,res)=>{
 
 });
 
-// //register
-// router.post('/register',async (req,res)=>{
 
-//     const {name, email,  phone, dateofbirth, password, cpassword}=req.body;
-    
-//     if(!name || !email || !phone || !dateofbirth || !password || !cpassword ){
-//           return res.status(422).json({error:"please fill the field properly"});
-//     }
-
-//     try{
-//         const userExist = await User.findOne({email:email})
-        
-//         if(userExist){
-//             return res.status(422).json({error: "email already exist"});
-//         }else if(password != cpassword){
-//             return res.status(422).json({error: "password not matching"});
-//         }
-//         else{
-
-//         const user = new User ({name, email,  phone, dateofbirth, password, cpassword});
-        
-        
-//         const userRegister = await user.save();
-
-//         if(userRegister){
-//             res.status(201).json({message: "user registered successfully"});
-
-//         }
-//         else
-//         {
-//             res.status(500).json({error:"failed to register"});
-//         }
-//     }
-
-//     } catch(err){
-//         console.log(err);
-//     }
-    
-//     });
 
 //Branchregister
 router.post('/superadmin/SuperAdmin2/register',async (req,res)=>{
@@ -165,9 +186,9 @@ router.post('/superadmin/SuperAdmin2/register',async (req,res)=>{
     //tutorregister
 router.post('/tutorregister',async (req,res)=>{
 
-    const {name, email, password, cpassword, education, contactNumber, presentAddress, permanentAddress, subjects}=req.body;
+    const {name, email, password, cpassword, education, contactNumber, presentAddress, permanentAddress, subjects, primelocation}=req.body;
     
-    if(!name || !email || !password || !cpassword || !education || !contactNumber || !presentAddress || !permanentAddress || !subjects){
+    if(!name || !email || !password || !cpassword || !education || !contactNumber || !presentAddress || !permanentAddress || !subjects || !primelocation){
           return res.status(422).json({error:"please fill the field properly"});
     }
 
@@ -181,7 +202,7 @@ router.post('/tutorregister',async (req,res)=>{
         }
         else{
 
-        const tutors = new tutor ({name, email, password, cpassword, education, contactNumber, presentAddress, permanentAddress, subjects});
+        const tutors = new tutor ({name, email, password, cpassword, education, contactNumber, presentAddress, permanentAddress, subjects, primelocation});
         
         
         const tutorRegister = await tutors.save();
@@ -206,9 +227,9 @@ router.post('/tutorregister',async (req,res)=>{
      //studentregister
 router.post('/studentregister',async (req,res)=>{
 
-    const {name, email, password, cpassword, board,classs, contactNumber, presentAddress,subjects}=req.body;
+    const {name, email, password, cpassword, board,classs, contactNumber, presentAddress, primelocation,subjects,addressProofa ,addressProof}=req.body;
     
-    if(!name || !email || !password || !cpassword || !board || !classs || !contactNumber || !presentAddress || !subjects){
+    if(!name || !email || !password || !cpassword || !board || !classs || !contactNumber || !presentAddress || !primelocation || !subjects|| !addressProofa || !addressProof){
           return res.status(422).json({error:"please fill the field properly"});
     }
 
@@ -222,7 +243,7 @@ router.post('/studentregister',async (req,res)=>{
         }
         else{
 
-        const students = new student ({name, email, password, cpassword, board, classs, contactNumber, presentAddress, subjects});
+        const students = new student ({name, email, password, cpassword, board, classs, contactNumber, presentAddress, primelocation, subjects, addressProofa, addressProof});
         
         
         const studentRegister = await students.save();
@@ -434,3 +455,43 @@ module.exports = router;
 // }).catch(err =>{ console.log(err);});
 
 // });
+
+// //register
+// router.post('/register',async (req,res)=>{
+
+//     const {name, email,  phone, dateofbirth, password, cpassword}=req.body;
+    
+//     if(!name || !email || !phone || !dateofbirth || !password || !cpassword ){
+//           return res.status(422).json({error:"please fill the field properly"});
+//     }
+
+//     try{
+//         const userExist = await User.findOne({email:email})
+        
+//         if(userExist){
+//             return res.status(422).json({error: "email already exist"});
+//         }else if(password != cpassword){
+//             return res.status(422).json({error: "password not matching"});
+//         }
+//         else{
+
+//         const user = new User ({name, email,  phone, dateofbirth, password, cpassword});
+        
+        
+//         const userRegister = await user.save();
+
+//         if(userRegister){
+//             res.status(201).json({message: "user registered successfully"});
+
+//         }
+//         else
+//         {
+//             res.status(500).json({error:"failed to register"});
+//         }
+//     }
+
+//     } catch(err){
+//         console.log(err);
+//     }
+    
+//     });

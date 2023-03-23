@@ -34,7 +34,7 @@ const BLogin = () => {
     window.alert("successful login");
     console.log("successful login");
 
-    navigate("/");
+    navigate("/branchadmin/branchadmin2");
  
     }
 
@@ -47,7 +47,7 @@ const BLogin = () => {
         <div className='signin-content'>
         
             <div className='signup-form'>
-            <h2 className='form-title'>BRANCH ADMIN</h2>
+            <h2 className='form-title'>BRANCH ADMIN LOGIN</h2>
             <form  method= "POST" className='register-form' id="register-form">
             <div className='form-group'>
                 <label htmlFor='email'>

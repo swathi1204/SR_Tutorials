@@ -20,6 +20,9 @@ formtutor {
  
 }
 
+h1a{
+  font-size: 3rem;
+}
 labela {
   display: flex;
   flex-direction: column;

@@ -6,7 +6,7 @@ function Superadmin()
     return(
         
         <div className="Superadmin">
-        <Login title="Super Admin" path="SuperAdmin2"/>
+        <Login title="SUPER ADMIN LOGIN" path="SuperAdmin2"/>
        </div>
     );
 }

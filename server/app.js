@@ -2,6 +2,7 @@ const express= require('express');
 const dotenv= require('dotenv');
 const mongoose= require('mongoose');
 const app = express();
+const finds = require('./router/find');
 
 // const cors = require('cors')
 // const DB= 'mongodb+srv://swathipardeshi:swathi01@cluster0.y5stpf9.mongodb.net/mernstack?retryWrites=true&w=majority'
@@ -14,6 +15,8 @@ require('./db/conn');
 app.use(express.json());
 // link the router files 
 app.use(require('./router/auth'));
+
+app.use("./router/find",finds);
 
 const DB= process.env.DATABASE;
 const PORT= process.env.PORT;

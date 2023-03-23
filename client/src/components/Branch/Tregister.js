@@ -23,7 +23,7 @@ const Tregister = () =>{
 const PostData = async (e) => {
     e.preventDefault();
   console.log(e)
-    const {name, email, password, cpassword, education, contactNumber, presentAddress, permanentAddress, subjects}= tutor;
+    const {name, email, password, cpassword, education, contactNumber, presentAddress, permanentAddress, subjects, primelocation}= tutor;
     
      const res = await fetch("/tutorregister",{
        method:"POST",
@@ -31,7 +31,7 @@ const PostData = async (e) => {
          "Content-type":"application/json"
        },
        body: JSON.stringify({
-        name, email, password, cpassword, education, contactNumber, presentAddress, permanentAddress, subjects
+        name, email, password, cpassword, education, contactNumber, presentAddress, permanentAddress, subjects, primelocation
        })
      });
      const data = await res.json();
@@ -47,36 +47,12 @@ const PostData = async (e) => {
       }
   }
 
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-
-
-
-    // const formData = {
-    //   fullName,
-    //   email,
-    //   password,
-    //   cPassword,
-    //   education,
-    //   contactNumber,
-    //   presentAddress,
-    //   permanentAddress,
-      
-     
-    //   subjects,
-      
-    //   addressProof,
-    // };
-
-    // console.log(formData);
-  
-
 
   return (
     <>
     
     <formtutor >
-    <h1>Tutor Registration</h1>      
+    <h1a>Tutor Registration</h1a>      
       <labela>
         <b>Full Name</b>
         <input
@@ -155,6 +131,16 @@ const PostData = async (e) => {
       value={tutor.subjects}
       onChange={handleInputs} required="true"
     />
+    </labelt>
+    <labelt>
+       <b>Prime Location</b> 
+        <input
+          type="string"
+          name="primelocation"
+          value={tutor.primelocation}
+          onChange={handleInputs} required="true"
+        />
+
 
   </labelt>
   

@@ -20,6 +20,8 @@ import Enquiry from './components/Enquiry';
 import BLogin from './components/Super/BLogin';
 import SLogin from './components/Branch/SLogin';
 import TLogin from './components/Branch/TLogin';
+// import SearchBar1 from './components/Branch/AssignTutor';
+import Assigntutor from './components/Branch/AssignTutor';
 
 import Sregister from './components/Branch/Sregister';
 
@@ -44,6 +46,9 @@ function App() {
         <Route path="/superadmin/superadmin2" element={<SuperAdmin2/>} />
         <Route path="/branchadmin/branchadmin2" element={<BranchAdmin2/>} />
         <Route path="/branchadmin/Branchadmin2/Enq" element={<Enquiry/>} />
+        <Route path="/branchadmin/branchadmin2/Ass" element={<Assigntutor/>} />
+    
+        
         <Route path="/xyz" element={<Tregister/>} />
         <Route path="/Sreg" element={<Sregister/>} />
 

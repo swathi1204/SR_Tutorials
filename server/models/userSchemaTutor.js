@@ -39,6 +39,10 @@ const userSchema3= new mongoose.Schema({
     subjects: {
         type: String,
         required : true
+    },
+    primelocation : {
+        type: String,
+        required : true
     }
     // },
     // addressProof: {

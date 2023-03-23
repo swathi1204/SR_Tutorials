@@ -8,7 +8,7 @@ const Sregister = () =>{
   const navigate= useNavigate();
 
   const[student,setStudent]= useState({
-      name:"", email:"", password:"", cpassword:"" , board:"", classs:"", contactNumber:"", presentAddress:"", subjects:""});
+      name:"", email:"", password:"", cpassword:"" , board:"", classs:"", contactNumber:"", presentAddress:"",primelocation:"", subjects:"", addressProofa:"" , addressProof:""});
     let name, value;
     const handleInputs=(e)=>{
     console.log(e);
@@ -22,7 +22,7 @@ const Sregister = () =>{
 const PostData = async (e) => {
   e.preventDefault();
 console.log(e)
-  const {name, email, password, cpassword, board, classs, contactNumber, presentAddress,  subjects}= student;
+  const {name, email, password, cpassword, board, classs, contactNumber, presentAddress, primelocation, subjects, addressProofa, addressProof}= student;
   
    const res = await fetch("/studentregister",{
      method:"POST",
@@ -30,7 +30,7 @@ console.log(e)
        "Content-type":"application/json"
      },
      body: JSON.stringify({
-      name, email, password, cpassword, board, classs, contactNumber, presentAddress, subjects
+      name, email, password, cpassword, board, classs, contactNumber, presentAddress,primelocation, subjects, addressProofa,addressProof
      })
    });
    const data = await res.json();
@@ -85,7 +85,7 @@ console.log(e)
     <>
     
     <formabc>
-    <h1>Student Registration</h1>      
+    <h1a>Student Registration</h1a>      
       <labelx>
         <b>Full Name</b>
         <input
@@ -107,7 +107,7 @@ console.log(e)
       <labelb>
        <b>Password</b>
         <input
-          type="password"
+          type="string"
           name="password"
           value={student.password}
           onChange={handleInputs} required ="true"
@@ -117,7 +117,7 @@ console.log(e)
       <labelb>
         <b>Confirm Password</b>
         <input
-          type="password"
+          type="string"
           name="cpassword"
           value={student.cpassword}
           onChange={handleInputs} required ="true"></input>
@@ -171,6 +171,18 @@ console.log(e)
           <div className="error">{errors.presentAddress}</div>
         )} */}
       </labelb>
+      <labelb>
+        <b>Prime Location</b>
+        <input
+          type="string"
+          name="primelocation"
+          value={student.primelocation}
+          onChange={handleInputs} required="true"
+        />
+        {/* {errors.presentAddress && (
+          <div className="error">{errors.presentAddress}</div>
+        )} */}
+      </labelb>
     
   
   <labelb>
@@ -185,25 +197,25 @@ console.log(e)
   </labelb>
   <labelb>
         <b>Address Proof</b>
-        <select value={student.addressProofa} onChange={handleInputs} required="true">
+        <select name="addressProofa" value={student.addressProofa} onChange={handleInputs} required="true">
           <option value="Aadhar">Aadhar Card</option>
           {/* <option value="DL">Driving License</option> */}
           <option value="passport">Passport</option>
           
         </select>
       </labelb>
-  {/* <labelb>
+  <labelb>
     <b>Address proof</b>
     
     <input
       type="file"
+      name="addressProof"
+      value={student.addressProof}
       onChange={handleInputs} required="true"
     />
-    {errors.addressProof && (
-      <div className="error">{errors.addressProof}</div>
-    )}
    
-  </labelb> */}
+  
+  </labelb>
   
   <labelb>
         <b>Any Queries?</b>
