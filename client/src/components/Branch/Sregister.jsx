@@ -8,7 +8,7 @@ const Sregister = () =>{
   const navigate= useNavigate();
 
   const[student,setStudent]= useState({
-      name:"", email:"", password:"", cpassword:"" , board:"", classs:"", contactNumber:"", presentAddress:"",primelocation:"", subjects:"", addressProofa:"" , addressProof:""});
+      name:"", email:"", password:"", cpassword:"" , board:"", classs:"", contactNumber:"", presentAddress:"",primelocation:"", subjects:""});
     let name, value;
     const handleInputs=(e)=>{
     console.log(e);
@@ -22,7 +22,7 @@ const Sregister = () =>{
 const PostData = async (e) => {
   e.preventDefault();
 console.log(e)
-  const {name, email, password, cpassword, board, classs, contactNumber, presentAddress, primelocation, subjects, addressProofa, addressProof}= student;
+  const {name, email, password, cpassword, board, classs, contactNumber, presentAddress, primelocation, subjects}= student;
   
    const res = await fetch("/studentregister",{
      method:"POST",
@@ -30,7 +30,7 @@ console.log(e)
        "Content-type":"application/json"
      },
      body: JSON.stringify({
-      name, email, password, cpassword, board, classs, contactNumber, presentAddress,primelocation, subjects, addressProofa,addressProof
+      name, email, password, cpassword, board, classs, contactNumber, presentAddress,primelocation, subjects
      })
    });
    const data = await res.json();
@@ -45,41 +45,6 @@ console.log(e)
      navigate("/");
     }
 }
-
-
-// function Sregister() {
-//   const [fullName, setFullName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-//   const [Board, setBoard] = useState("");
-//   const [contactNumber, setContactNumber] = useState("");
-//   const [presentAddress, setPresentAddress] = useState("");
-//   const [subjects, setSubjects] = useState([]);
-//   const [addressProof, setAddressProof] = useState("");
-//   const [errors] = useState({});
-//   const [addressProofa, setAddressProofa] = useState('None');
-//   const [Query, setQuery] = useState("");
-//   const [classLevel, setClassLevel] = useState('1');
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//  const formData = {
-//       fullName,
-//       email,
-//       password,
-//       confirmPassword,
-//       Board,
-//       contactNumber,
-//       presentAddress,
-     
-//       subjects,
-//       addressProof,
-//     };
-
-//     console.log(formData);
-//   };
 
   return (
     <>
@@ -102,7 +67,7 @@ console.log(e)
           value={student.email}
           onChange={handleInputs} required ="true"
         />
-        {/* {errors.email && <div className="error">{errors.email}</div>} */}
+
       </labelb>
       <labelb>
        <b>Password</b>
@@ -112,7 +77,6 @@ console.log(e)
           value={student.password}
           onChange={handleInputs} required ="true"
         />
-        {/* {errors.password && <div className="error">{errors.password}</div>} */}
       </labelb>
       <labelb>
         <b>Confirm Password</b>
@@ -121,9 +85,7 @@ console.log(e)
           name="cpassword"
           value={student.cpassword}
           onChange={handleInputs} required ="true"></input>
-        {/* {errors.confirmPassword && (
-          <div className="error">{errors.confirmPassword}</div>
-        )} */}
+       
       </labelb>
       <labelb>
        <b>Board</b> 
@@ -133,7 +95,7 @@ console.log(e)
           value={student.board}
           onChange={handleInputs} required ="true"
         />
-        {/* {errors.education && <div className="error">{errors.education}</div>} */}
+  
       </labelb>
       <labelb>
         <b>Class</b>
@@ -156,9 +118,7 @@ console.log(e)
           value={student.contactNumber}
           onChange={handleInputs} required="true"
         />
-        {/* {errors.contactNumber && (
-          <div className="error">{errors.contactNumber}</div>
-        )} */}
+        
       </labelb>
       <labelb>
         <b>Present Address</b>
@@ -167,9 +127,7 @@ console.log(e)
           value={student.presentAddress}
           onChange={handleInputs} required="true"
         />
-        {/* {errors.presentAddress && (
-          <div className="error">{errors.presentAddress}</div>
-        )} */}
+        
       </labelb>
       <labelb>
         <b>Prime Location</b>
@@ -179,9 +137,7 @@ console.log(e)
           value={student.primelocation}
           onChange={handleInputs} required="true"
         />
-        {/* {errors.presentAddress && (
-          <div className="error">{errors.presentAddress}</div>
-        )} */}
+        
       </labelb>
     
   
@@ -193,13 +149,12 @@ console.log(e)
       value={student.subjects}
       onChange={handleInputs} required="true"
     />
-    {/* {errors.subjects && <div className="error">{errors.subjects}</div>} */}
   </labelb>
   <labelb>
         <b>Address Proof</b>
         <select name="addressProofa" value={student.addressProofa} onChange={handleInputs} required="true">
           <option value="Aadhar">Aadhar Card</option>
-          {/* <option value="DL">Driving License</option> */}
+  
           <option value="passport">Passport</option>
           
         </select>
@@ -210,7 +165,7 @@ console.log(e)
     <input
       type="file"
       name="addressProof"
-      value={student.addressProof}
+      // value={student.addressProof}
       onChange={handleInputs} required="true"
     />
    
@@ -224,13 +179,10 @@ console.log(e)
           value={student.Query}
           onChange={handleInputs} required="true"
         />
-        {/* {errors.Query && (
-          <div className="error">{errors.Query}</div>
-        )} */}
+       
       </labelb>
 
       <input type="submit" className='button contact_submit_button' value="Register" onClick={PostData}></input>
-  {/* <button type="submit">Register</button> */}
 </formabc>
 </>
  );

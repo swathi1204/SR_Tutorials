@@ -46,12 +46,12 @@ const userSchemastudent= new mongoose.Schema({
         type: String,
         required : true
     }
-    ,
-    file: {
-        data:Buffer,
-        type : String,
-        required : true
-    }
+    // ,
+    // file: {
+    //     data:Buffer,
+    //     type : String,
+    //     required : true
+    // }
 })
 
 // hashing the password

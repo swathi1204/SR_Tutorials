@@ -12,7 +12,7 @@
   
 
    .abc {
-    background-color: yellow;
+    background-color: white;
     height: fit-content;
     width: 10cm;
     margin-left: 1cm;
@@ -27,11 +27,28 @@
     
   }
   button{
-    margin-left: 18cm;
+    margin-left: 4cm;
     margin-top: 0.2cm;
   }
   .xyz
   {
     width: 10cm;
+    margin-left: 1cm;
+  }
+  .student1
+  {
+    width: 10cm;
     margin-left: 14cm;
+  }
+  .student2 {
+    background-color: white;
+    height: fit-content;
+    width: 10cm;
+    margin-left: 20cm;
+    margin-top: 1cm;
+    
+  }
+    button{
+    margin-left: 4cm;
+    margin-top: 0.2cm;
   }

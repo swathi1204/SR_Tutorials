@@ -227,9 +227,10 @@ router.post('/tutorregister',async (req,res)=>{
      //studentregister
 router.post('/studentregister',async (req,res)=>{
 
-    const {name, email, password, cpassword, board,classs, contactNumber, presentAddress, primelocation,subjects,addressProofa ,addressProof}=req.body;
+    const {name, email, password, cpassword, board,classs, contactNumber, presentAddress, primelocation,subjects}=req.body;
+    // console.log(req.body,"abhi");
     
-    if(!name || !email || !password || !cpassword || !board || !classs || !contactNumber || !presentAddress || !primelocation || !subjects|| !addressProofa || !addressProof){
+    if(!name || !email || !password || !cpassword || !board || !classs || !contactNumber || !presentAddress || !primelocation || !subjects){
           return res.status(422).json({error:"please fill the field properly"});
     }
 
@@ -243,7 +244,7 @@ router.post('/studentregister',async (req,res)=>{
         }
         else{
 
-        const students = new student ({name, email, password, cpassword, board, classs, contactNumber, presentAddress, primelocation, subjects, addressProofa, addressProof});
+        const students = new student ({name, email, password, cpassword, board, classs, contactNumber, presentAddress, primelocation, subjects});
         
         
         const studentRegister = await students.save();
