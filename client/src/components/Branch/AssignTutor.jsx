@@ -23,7 +23,7 @@ const Assigntutor = () => {
   const handleSearch2 = (event2) => {
     event2.preventDefault();
 
-    fetch(`http://localhost:5000/studentregister?primelocation=${query}`)
+    fetch(`http://localhost:5000/studentregister?primelocation=${query2}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("data:", data.students);
@@ -37,6 +37,7 @@ const Assigntutor = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
+
 
     fetch(`http://localhost:5000/tutorregister?primelocation=${query}`)
       .then((response) => response.json())

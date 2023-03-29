@@ -84,6 +84,7 @@ router.get("/studentregister", async (req, res) => {
             $in: [qPrimelocation],
           },
         })
+        console.log()
         res.send({students});
       }
     }
