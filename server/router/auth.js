@@ -55,6 +55,43 @@ router.get('/signup',(req, res)=> {
 res.send('hello register world');
 });
 
+// router.get("/studentregister", (req, res) => {
+//     const name = req.query.name;
+//     student.find({ primeLocation: primeLocation }, (err, students) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         res.json({ students: students });
+//       }
+//     });
+//   });
+ //find student
+
+router.get("/studentregister", async (req, res) => {
+
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+   
+    const qPrimelocation = req.query.primelocation;
+    try {
+        let students;
+        if (qPrimelocation) {
+        students = await userSchemastudent.find({
+          primelocation: {
+            $in: [qPrimelocation],
+          },
+        })
+        res.send({students});
+      }
+    }
+      catch (err) {
+        res.status(500).json(err);
+      }
+    })
+
 //find tutor
 
 router.get("/tutorregister", async (req, res) => {
@@ -65,13 +102,13 @@ router.get("/tutorregister", async (req, res) => {
     res.setHeader("Access-Control-Allow-Headers", "content-type");
     res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
    
-    const qPrimelocation = req.query.primelocation;
+    const qPrimelocation2 = req.query.primelocation;
     try {
         let tutors;
-        if (qPrimelocation) {
+        if (qPrimelocation2) {
         tutors = await userSchemaTutor.find({
           primelocation: {
-            $in: [qPrimelocation],
+            $in: [qPrimelocation2],
           },
         })
         res.send({tutors});
@@ -83,32 +120,7 @@ router.get("/tutorregister", async (req, res) => {
     })
 
 
-    //find student
-
-router.get("/studentregister", async (req, res) => {
-
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Max-Age", "1800");
-    res.setHeader("Access-Control-Allow-Headers", "content-type");
-    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
    
-    const qPrimelocation2 = req.query.primelocation;
-    try {
-        let students;
-        if (qPrimelocation2) {
-        students = await userSchemastudent.find({
-          primelocation: {
-            $in: [qPrimelocation2],
-          },
-        })
-        res.send({students});
-      }
-    }
-      catch (err) {
-        res.status(500).json(err);
-      }
-    })
  
 
 //contact

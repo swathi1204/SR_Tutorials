@@ -43,7 +43,7 @@ const PostData = async (e) => {
        window.alert("successfully received");
        console.log("successfully received");
   
-       navigate("/");
+       navigate("/branchadmin/branchadmin2");
       }
   }
 

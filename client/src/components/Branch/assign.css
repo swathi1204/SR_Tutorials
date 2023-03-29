@@ -1,54 +1,57 @@
-/* .abc {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-  } */
+:root
+{
+  background-size: cover;
   
-  /* .abc > div {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-  } */
-  
+}
+.cont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
 
-   .abc {
+.abc {
+  grid-column: 1;
+}
+
+.abc1 {
+  grid-column: 2;
+}
+.records1
+  {
     background-color: white;
-    height: fit-content;
+  
     width: 10cm;
-    margin-left: 1cm;
+    margin-left: 6cm;
     margin-top: 1cm;
-    
   }
-  .xxx{
-    font-size: 2rem;
-    color: black;
-    /* margin-top: -10cm; */
-    margin-left: 10cm;
-    
+
+  .records2
+  {
+    background-color: white;
+  
+    width: 10cm;
+    margin-left: 2cm;
+    margin-top: 0.7cm;
   }
+  .xyz {
+    grid-column: 1;
+    width: 10cm;
+    margin-left: 5cm;
+  }
+  
+  .xyz11 {
+    grid-column: 2;
+    width: 10cm;
+    margin-left: 2cm;
+  }
+
   button{
     margin-left: 4cm;
     margin-top: 0.2cm;
   }
-  .xyz
-  {
-    width: 10cm;
-    margin-left: 1cm;
+  .button1{
+margin-left: 0cm;
   }
-  .student1
-  {
-    width: 10cm;
-    margin-left: 14cm;
-  }
-  .student2 {
-    background-color: white;
-    height: fit-content;
-    width: 10cm;
-    margin-left: 20cm;
-    margin-top: 1cm;
-    
-  }
-    button{
-    margin-left: 4cm;
-    margin-top: 0.2cm;
+  .button2{
+    margin-left: 5cm;
   }
